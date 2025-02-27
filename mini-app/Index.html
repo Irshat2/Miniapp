@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MysteryQuest</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { background: #1a1a1a; color: white; text-align: center; }
+        button { padding: 10px 20px; margin: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🔍 Тайна замка</h1>
+    <button onclick="scanQR()">📷 Сканировать QR-код</button>
+    <button onclick="getLocation()">🗺️ Показать карту</button>
+
+    <script>
+        function scanQR() {
+            Telegram.WebApp.sendData("CASTLE_123"); // В реальности: запрос к камере и обработка
+        }
+
+        function getLocation() {
+            navigator.geolocation.getCurrentPosition(pos => {
+                Telegram.WebApp.sendData(JSON.stringify({
+                    type: "location",
+                    coords: pos.coords
+                }));
+            });
+        }
+    </script>
+</body>
+</html>
